@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Sayfa</title>
+    <link rel="icon" type="image/x-icon" href="./görseller/logo/logoico.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        nav {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: rgb(255, 255, 255);
+            position: fixed;
+            top: 0;
+            /* bu üstte kalmasını sağlıyor */
+            width: 100%;
+            z-index: 999;
+            /* olası animasyonların barın üstüne çıkmasını engelliyor */
+        }
+
+
+        nav .nav_ic {
+            position: relative;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav_ic .nav-links {
+            display: inline-flex;
+            /* diğerleri de flex olduğu için flex yaptı galiba */
+        }
+
+        .nav-links li a {
+            color: #000000;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 15px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .nav-links li a:hover {
+            background: #3A3B3C;
+            color: #f2f2f2;
+        }
+
+        .nav-links li:hover .mega-box {
+            transition: all 0.3s ease;
+            top: 50px;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mega-box {
+            position: absolute;
+            left: 0;
+            width: 70%;
+            padding: 35px 1% 1% 1%;
+            margin-top: 15px;
+            margin-right: 17%;
+            margin-left: 17%;
+            top: 85px;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .mega-box .content {
+            background: #242526;
+            padding: 25px 20px;
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .mega-box .content header {
+            /* mega-box içindeki başlıklar için */
+            font-size: 18px;
+            color: #f2f2f2;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: solid red 2px;
+        }
+
+        .mega-box li a {
+            color: #f2f2f2;
+            display: block;
+        }
+
+        #s1 {
+            width: 70%;
+        }
+
+        .nav_ic .logo a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links li {
+            list-style: none;
+        }
+
+        .nav_ic img {
+            width: 200px;
+            margin-left: 100px;
+        }
+
+        /* ----------- main kısmı ----------------- */
+        .main {
+            /* margin: 20px; */
+            /* bunu öylesine ekledim başlangıç olarak */
+            margin-top: 70px !important;
+            /* bu olmazsa en üstteki ifadeler navbar altında kalıyor */
+            /* yani sart gibi bir şey en azından bu kısım */
+            min-height: 500px;
+            /* bu footer ın en altta kalması için */
+
+        }
+
+        .giris {
+            width: 100%;
+            height: 600px;
+            background: rgb(52, 157, 255);
+            background: linear-gradient(0deg, rgb(38, 150, 255) 0%, rgba(156, 207, 255, 1) 35%, rgba(255, 255, 255, 1) 83%);
+            background-attachment: fixed;
+        }
+
+        .giris .giris_content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .giris .giris_yazi {
+            font-family: Arial, Helvetica, sans-serif;
+            width: 50%;
+            padding-top: 150px;
+            margin-left: 100px;
+        }
+
+        .giris_yazi h1 {
+            font-size: 47px;
+            color: #0d004f;
+        }
+
+        .giris_yazi h3 {
+            margin-top: 40px;
+            font-size: 23px;
+            color: #494949;
+        }
+
+        .giris_resim img {
+            width: 650px;
+            padding-top: 5%;
+            padding-right: 10%;
+        }
+
+        /* ----- block a ----- */
+        .block_a {
+            display: flex;
+            margin-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .block_a img {
+            width: 600px;
+            margin: 100px;
+        }
+
+        .block_a_yazi {
+            width: 70%;
+            padding: 80px;
+            margin-top: 30px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin-left: 50px;
+
+        }
+
+        .block_a_yazi h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #0a003b;
+        }
+
+        .block_a_yazi h3 {
+            color: #3A3B3C;
+            font-size: 20px;
+        }
+
+        /* --------- block b ----- */
+        .block_b {
+            background-color: rgb(218, 227, 239);
+            display: flex;
+            margin: 0 100px;
+            justify-content: space-between;
+            border-radius: 50px;
+        }
+
+        .block_b_resim img {
+            width: 600px;
+            margin: 80px;
+        }
+
+        .block_b_yazi {
+            width: 45%;
+            margin-top: 7%;
+            padding: 0 50px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .block_b_yazi h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #0a003b;
+        }
+
+        .block_b_yazi h3 {
+            color: #3A3B3C;
+            font-size: 20px;
+        }
+
+
+        /* ------ block c ----- */
+        .block_c {
+
+            padding: 100px;
+            margin-top: 200px;
+            background-image: url(./görseller/arka_plan/arka_plan_3.png);
+        }
+
+        .block_c .block_c_content {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .block_c_box {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            width: 30%;
+            /* border: 2px solid grey; */
+            text-align: center;
+            border-radius: 10px;
+            height: 320px;
+            box-shadow: 5px 5px rgb(179, 179, 179);
+            transition: all 0.3s;
+            margin: 10px;
+            overflow: hidden;
+            padding: 3px;
+            background-color: #ffffff;
+
+        }
+
+        .block_c_box:hover img {
+            display: none;
+        }
+
+        .block_c_box:hover h3 {
+            font-size: 20px;
+
+        }
+
+        .block_c_box a {
+            text-decoration: none;
+            color: #0a003b;
+        }
+
+        .block_c_box h3 {
+            font-size: 0;
+            transition: all 0.3s;
+
+        }
+
+        .block_c_box img {
+            width: 102%;
+            position: relative;
+        }
+
+        #block_c_h1 {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .block_c_yazi {
+            text-align: center;
+        }
+
+        /* .block_c_content {
+            margin-top: 10px;
+        } */
+
+        .block_d {
+            margin-top: 100px;
+            width: 100%;
+            height: 800px;
+            background-image: url(./görseller/arka_plan/arka_plan_4.png);
+            background-attachment: local;
+            background-size: 1600px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .block_d_resim img {
+            width: 750px;
+            margin: 50px;
+            margin-top: 100px;
+        }
+
+        .block_d_yazi {
+
+            margin-top: 200px;
+            color: white;
+            padding: 10px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            padding-left: 100px;
+        }
+
+        .block_d_yazi h1 {
+            font-size: 40px;
+            padding-bottom: 30px;
+        }
+
+        .block_d_yazi h4 {
+            font-size: 25px;
+            color: #dadada;
+        }
+
+        /* ------- block e ------- */
+        .block_e {
+            margin-top: 50px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            position: relative;
+            padding-top: 30px;
+        }
+
+        .block_e_baslik {
+            width: 80%;
+            background-color: #dae5ff;
+            border-radius: 40px;
+            margin: auto;
+            box-shadow: 5px 5px 5px #a0bcff;
+            border: 2px solid #6694ff;
+            position: absolute;
+            left: 50%;
+            top: 14%;
+            transform: translate(-50%, -50%);
+            font-size: 22px;
+
+        }
+
+        .block_e_baslik h1 {
+            text-align: center;
+            padding: 10px;
+            color: #0d004f;
+
+        }
+
+        .block_e_content {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            background: rgb(26, 75, 130);
+            background: linear-gradient(110deg, rgba(26, 75, 130, 1) 20%, rgba(110, 163, 221, 1) 74%);
+            border-radius: 100px;
+            margin: 5%;
+            padding: 20px;
+            padding-top: 2%;
+        }
+
+        .block_e_box {
+            width: 40%;
+            text-align: center;
+            height: 400px;
+            margin: 30px;
+            position: relative;
+            border-radius: 30px;
+            border: 5px solid rgb(133, 147, 199);
+            box-shadow: 10px 10px 4px rgb(179, 179, 179);
+        }
+
+        #block_e_film {
+            background-image: url(./görseller/Öneriler/film_önerileri.jpg);
+            width: 35%;
+            height: 400px;
+            background-size: cover;
+        }
+
+        #block_e_kitap {
+            background-image: url(./görseller/Öneriler/kitap_önerileri.png);
+            width: 35%;
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+        }
+
+        .block_e_alt {
+            bottom: 0;
+            padding: 0px;
+            background-color: #112a45;
+            /* color: #dadada; */
+            border-radius: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 90%;
+            margin: 20px 5%;
+            border: 5px solid rgba(251, 215, 171, 0.863);
+            transition: all 0.2s;
+        }
+
+        .block_e_alt a {
+            text-decoration: none;
+            color: #dadada;
+            padding: 10px 5px;
+            display: block;
+            
+        }
+
+        .block_e_box:hover {
+            scale: 1.06;
+        }
+
+        .block_e_box:hover .block_e_alt {
+            background-color: #dadada;
+        }
+
+        .block_e_box:hover .block_e_alt h1 {
+            color: #112a45;
+        }
+
+        /* --- block f --- */
+
+
+        .block_f {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            width: 85%;
+            margin: auto;
+            margin-top: 50px;
+            padding-top: 20px;
+            margin-bottom: 100px;
+            scale: 0.95;
+
+        }
+
+        .block_f h1 {
+            font-size: 45px;
+            color: #0d004f;
+            border-bottom: 3px solid rgb(65, 65, 65);
+
+        }
+
+        .block_f_content {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .block_f_event_box img {
+            width: 350px;
+            height: 450px;
+            border-radius: 15px;
+        }
+
+        .block_f_event_box {
+            border: 5px solid rgb(67, 67, 67);
+            border-radius: 20px;
+            box-shadow: 7px 7px gray;
+            background-color: #fcfcfc;
+            transition: all 0.3s;
+        }
+
+        .block_f_h3 {
+            text-align: center;
+            padding: 2px;
+            margin-top: 5px;
+        }
+
+        .block_f_event_box a {
+            color: #112a45;
+            text-decoration: none;
+        }
+
+        .block_f_event_box:hover {
+            scale: 1.05;
+            background-color: #112a45;
+        }
+
+        .block_f_event_box:hover h3 {
+            color: #ffd9d4;
+        }
+
+        /* --- block g --- */
+        .block_g {
+            margin: 100px 0;
+            position: relative;
+
+
+        }
+
+        .block_g_1 {
+            height: 100px;
+
+        }
+
+        .block_g_2 {
+            display: flex;
+            justify-content: space-between;
+            background-color: #112a45;
+            padding: 70px 100px;
+
+        }
+
+        .block_g_yazi h3 {
+            font-size: 27px;
+            color: rgba(251, 215, 171, 0.863);
+            padding: 10px;
+            margin-top: 20px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            width: 50%;
+        }
+
+        .block_g_resim img {
+            width: 600px;
+            position: absolute;
+            top: 6%;
+            right: 5%;
+        }
+
+
+
+
+
+        /* -------------- footer kısmı --------------- */
+        div.footer {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            bottom: 0;
+            background-color: rgb(67, 67, 67);
+            display: block;
+
+        }
+
+        div.footer a {
+            display: block;
+            padding: 15px 15px;
+        }
+        div.footer a:hover
+        {
+            background-color: #242526;
+            color: #dadada;
+            border-radius: 5px;
+        }
+
+        div.footer_alt {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            /* 3 tane footer_box un oranla yerleşmelerini sağlamak için */
+        }
+
+        div.footer_box {
+
+            text-align: center;
+            /* başlık ve yazılar ortalansın diye */
+        }
+
+        div.footer_box ul {
+            list-style-type: none;
+            /* listelerde olan . işaretini kaldırıyor */
+            padding: 0%;
+        }
+
+        div.footer_box h3 {
+            color: aliceblue;
+            text-decoration-line: underline;
+            text-decoration-color: red;
+            margin-bottom: 10px;
+            /* baştakı h3 lerin altlarında kırmızı bir çizgi oluşturuyor */
+        }
+
+        div.footer_box ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 5px;
+        }
+
+        div#footer_ek {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav_ic">
+            <div class="logo"><a href="./ana_sayfa.html"><img src="./görseller/logo/logo.png"
+                        alt="Sosyal Gelişim Kulübü"></a></div>
+            <ul class="nav-links">
+                <li><a href="./ana_sayfa.html">Ana Sayfa</a></li>
+                <li>
+                    <a href="#">Bölümler</a>
+                    <div class="mega-box">
+                        <div class="content">
+                            <div class="row">
+                                <header>Bölümlerimiz</header>
+                                <ul class="mega-link">
+                                    <li><a href="./toplum_hizmetleri.html">Toplum Hizmetleri</a></li>
+                                    <li><a href="./sosyal_inovasyon.html">Sosyal İnovasyon</a></li>
+                                    <li><a href="./dijital_iletişim_ve_medya.html">Dijital iletişim ve Media</a></li>
+                                    <li><a href="./öğrenme_felsefesi.html">Öğrenme felsefesi</a></li>
+                                    <li><a href="./hitabet.html">Hitabet ve Diksiyon</a></li>
+                                </ul>
+                            </div>
+                            <div class="row2">
+                                <header id="s1">Öneriler</header>
+                                <ul>
+                                    <li><a href="./kitap_önerileri.html">Kitap Önerileri</a></li>
+                                    <li><a href="./film_önerileri.html">Film ve Belgesel Önerileri</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="./hakkımızda.html">Hakkımızda</a></li>
+                <li><a href="./iletişim.html">iletişim</a></li>
+                <li><a href="./ulasim.html">ulaşım</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- --------- -->
+    <div class="main">
+        <div class="giris">
+            <div class="giris_content">
+                <div class="giris_yazi">
+                    <h1><b>Sosyal Gelişim Kulübü: Toplum İçin Değişim, Büyüme ve Dayanışma</h1>
+                    <h3>Sosyal Gelişim Kulübü olarak, toplumda pozitif bir etki yaratma, bireylerin kişisel
+                        gelişimlerine katkı sağlama ve dayanışmayı güçlendirme misyonuyla yola çıktık.</h3>
+                </div>
+                <div class="giris_resim">
+                    <img src="./görseller/ana_resimler/ana_sayfa_resim_1.png" alt="">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="block_a">
+
+            <div class="block_a_yazi">
+                <h1>Amacımız:</h1>
+                <h3>Sosyal Gelişim Kulübü olarak, toplumda pozitif bir etki yaratma, bireylerin kişisel gelişimlerine
+                    katkı sağlama ve dayanışmayı güçlendirme misyonuyla yola çıktık. Toplumumuzda karşılaştığımız
+                    sorunlara çözüm bulmak, insanların potansiyellerini keşfetmelerine yardımcı olmak ve birlikte daha
+                    adil ve sürdürülebilir bir gelecek inşa etmek için çabalıyoruz.</h3>
+            </div>
+            <div class="block_a_resim">
+                <div class="block_a_resim_1">
+                    <img src="./görseller/ana_resimler/ana_sayfa_resim_3.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="block_b">
+            <div class="block_b_resim">
+                <img src="./görseller/ana_resimler/ana_sayfa_resim_2.png" alt="">
+            </div>
+            <div class="block_b_yazi">
+                <h1>Sosyal becerilerini geliştirme fırsatı sunmak en önemli hedeflerimizden biridir.</h1>
+                <h3>İnanıyoruz ki, sosyal beceriler, insanların başarılı ve mutlu bir yaşam sürdürebilmeleri için hayati
+                    öneme sahiptir. İletişim becerilerini geliştirmek, empati kurabilmek, işbirliği yapabilmek, liderlik
+                    yeteneklerini güçlendirmek ve çatışma yönetimi becerilerini kazanmak, bireylerin hem kişisel hem de
+                    profesyonel hayatlarında daha etkili olmalarına yardımcı olur.</h3>
+            </div>
+
+        </div>
+
+        <div class="block_c">
+            <h1 id="block_c_h1">Bölümlerimiz</h1>
+            <hr>
+            <div class="block_c_content">
+                
+                <div class="block_c_box">
+                    <a href="./toplum_hizmetleri.html" id="a1">
+                        <img src="./görseller/ana_resimler/ana_alt_1.png" alt="">
+                        <div class="block_c_yazi">
+                            <h1>Toplum Hizmetleri</h1>
+                            <h3><br>Toplumun ihtiyaçlarına odaklanarak gerçekleştirdiği projelerin bir birimidir
+                                toplumsal
+                                sorunlara çözüm bulmayı amaçlar. </h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="block_c_box">
+                    <a href="./sosyal_inovasyon.html" id="a1">
+                        <img src="./görseller/ana_resimler/ana_alt_2.png" alt="">
+                        <div class="block_c_yazi">
+                            <h1>Sosyal İnovasyon</h1>
+                            <h3><br>Yenilikçi çözümler üreterek toplumda pozitif değişimler yaratmayı hedefleyen bir
+                                birimidir.</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="block_c_box">
+                    <a href="./dijital_iletişim_ve_medya.html" id="a1">
+                        <img src="./görseller/ana_resimler/ana_resim_5.png" alt="">
+                        <div class="block_c_yazi">
+                            <h1>Dijital İletişim ve Media</h1><br>
+                            <h3>Dijital platformlarda etkili iletişim stratejileri geliştirerek topluma ulaşmayı ve
+                                sosyal
+                                mesajları etkili bir şekilde iletmeyi amaçlayan bir birimidir.</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="block_c_box">
+                    <a href="./öğrenme_felsefesi.html" id="a1">
+                        <img src="./görseller/ana_resimler/ana_alt_4.png" alt="">
+                        <div class="block_c_yazi">
+                            <h1>Öğrenme felsefesi</h1><br>
+                            <h3>Toplum bireylerini eleştirel düşünme, problem çözme becerileri geliştirerek kendi
+                                öğrenme yöntemlerini bulmalarında onlara
+                                yardım eder.</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="block_c_box">
+                    <a href="./hitabet.html" id="a1">
+                        <img src="./görseller/ana_resimler/ana_alt_3.png" alt="">
+                        <div class="block_c_yazi">
+                            <h1>Hitabet ve Diksiyon</h1>
+                            <h3><br>Bireylerinin iletişim becerilerini güçlendirmeyi hedefleyen birimdir. Doğru
+                                diksiyon, beden dili ve etkili hitabet teknikleri konusunda eğitim verir.</h3>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="block_d">
+            <div class="block_d_yazi">
+                <h1 id="block_d_h1">Kulübümüzün farklı bölümlerinin olmasının sebebi;</h1>
+                <h4>Geniş bir yelpazede ilgi alanlarına ve yeteneklere sahip olan üyelerimize hitap etmek ve çeşitli
+                    konularda derinleşmelerini sağlamak amacıyla tasarlanmıştır. Her bölümün kendine özgü bir misyonu
+                    vardır ve kulüp olarak toplumun farklı alanlarına etki etme çabamızı yansıtır.</h4>
+            </div>
+            <div class="block_d_resim">
+                <img src="./görseller/ana_resimler/ana_sayfa_resim_4.png" alt="">
+            </div>
+        </div>
+
+        <div class="block_e">
+            <div class="block_e_baslik">
+                <h1>Önerilerimiz</h1>
+            </div>
+            <div class="block_e_content">
+                <div class="block_e_box" id="block_e_film">
+                    <div class="block_e_alt">
+                        <a href="./film_önerileri.html">
+                            <h1>Film Önerileri</h1>
+                        </a>
+                    </div>
+                </div>
+                <div class="block_e_box" id="block_e_kitap">
+                    <div class="block_e_alt">
+                        <a href="./kitap_önerileri.html">
+                            <h1>Kitap Önerileri</h1>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="block_g">
+            <div class="block_g_1">
+
+            </div>
+            <div class="block_g_2">
+                <div class="block_g_yazi">
+                    <h3>Sosyal Gelişim Kulübü olarak, <br><br> Üyelerimize farklı ve etkileyici etkinlikler sunarak
+                        onların
+                        kişisel
+                        gelişimlerine katkıda bulunmayı hedefliyoruz. Etkinliklerimiz, kulüp üyelerinin becerilerini
+                        geliştirmeleri, yeni deneyimler kazanmaları ve toplumun ihtiyaçlarına duyarlılıklarını
+                        artırmaları
+                        için bir platform sağlıyor.</h3>
+                </div>
+                <div class="block_g_resim">
+                    <img src="./görseller/ana_resimler/ana_resim_6.1.png" alt="">
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="block_f_ust">
+            <div class="block_f">
+                <h1><b>Etkinliklerimiz</b></h1>
+                <div class="block_f_content">
+                    <div class="block_f_event_box" id="event1"><a href="./sosyal_inovasyon_event_1.html">
+                            <img src="./görseller/Etkinlikler/sosyal_inovasyon_event_1.png" alt="">
+                            <h3 class="block_f_h3"><b>İnovatif Sosyal Girişimler Yarışması</b> <br> Tarih:
+                                03.05.2023<br>Yer :İSTÜN Sütlüce kampüsü</h3>
+                        </a></div>
+                    <div class="block_f_event_box" id="event2">
+                        <a href="./öğrenme_felsefesi_event_2.html"> <img
+                                src="./görseller/Etkinlikler/öğrenme_felsefesi_event_1.png" alt="">
+                                <!-- bu kısımda numara anlamında karışıklık oldu -->
+                            <h3 class="block_f_h3"><b>Kişisel Öğrenme Yöntemleri Atölyesi </b><br>Tarih:
+                                10.05.2023<br>Yer :İSTÜN Sütlüce kampüsü</h3>
+                        </a>
+                    </div>
+                    <div class="block_f_event_box" id="event3">
+                        <a href="./öğrenme_felsefesi_event_1.html"> <img
+                                src="./görseller/Etkinlikler/öğrenme_felsefesi_event_2.png" alt="">
+                                <!-- bu kısımda numara anlamında karışıklık oldu -->
+                            <h3 class="block_f_h3"><b>Yaratıcı Sorun Çözme Atölyesi</b> <br>Tarih: 17.05.2023<br>Yer
+                                :İSTÜN Sütlüce kampüsü</h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- ------------------ -->
+    <div class="footer">
+        <div class="footer_alt">
+            <div class="footer_box" id="footer_bölümler">
+                <h3>Kulübümüzün Bölümleri</h3>
+                <div>
+                    <ul>
+                        <li><a href="./toplum_hizmetleri.html">Toplum Hizmetleri</a></li>
+                        <li><a href="./sosyal_inovasyon.html">Sosyal İnovasyon</a></li>
+                        <li><a href="./dijital_iletişim_ve_medya.html">Dijital iletişim ve Media</a></li>
+                        <li><a href="./öğrenme_felsefesi.html">Öğrenme felsefesi</a></li>
+                        <li><a href="./hitabet.html">Hitabet ve Diksiyon</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer_box" id="footer_oneriler">
+                <h3>Öneriler</h3>
+                <div>
+                    <ul>
+                        <li><a href="./kitap_önerileri.html">Kitap Önerileri</a></li>
+                        <li><a href="./film_önerileri.html">Film ve Belgesel Önerileri</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="footer_box" id="footer_ek">
+                <div>
+                    <ul>
+                        <li><a href="./ana_sayfa.html">Ana Sayfa</a></li>
+                        <li><a href="./iletişim.html">İletişim</a></li>
+                        <li><a href="./ulasim.html">ulaşım</a></li>
+                        <li><a href="./hakkımızda.html">Hakkımızda</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

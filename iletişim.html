@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim</title>
+    <link rel="icon" type="image/x-icon"  href="./görseller/logo/logoico.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        nav {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            margin: 0;
+            background-color: rgb(255, 255, 255);
+            position: fixed;
+            top: 0;
+            /* bu üstte kalmasını sağlıyor */
+            width: 100%;
+            z-index: 999;
+            /* olası animasyonların barın üstüne çıkmasını engelliyor */
+
+        }
+
+        nav .nav_ic {
+            position: relative;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav_ic .nav-links {
+            display: inline-flex;
+            /* diğerleri de flex olduğu için flex yaptı galiba */
+        }
+
+        .nav-links li a {
+            color: #000000;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 15px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .nav-links li a:hover {
+            background: #3A3B3C;
+            color: #f2f2f2;
+        }
+
+        .nav-links li:hover .mega-box {
+            transition: all 0.3s ease;
+            top: 50px;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mega-box {
+            position: absolute;
+            left: 0;
+            /* positsion absolute dediğimiz için direkt bölümler kısmının altında kalıyordu normalde */
+            width: 70%;
+            /* genişliğini %70 ayarladık. */
+            padding: 35px 1% 1% 1%; 
+            margin-top: 15px;
+            /* kenarlarda %1 lik yakınlığında da açık kalacak mega-box */
+            margin-right: 17%;
+            margin-left: 17%;
+            /* sağ ve solu ortalamak için ayarladık
+            padding kullanmama sebebim mega-box kapanması için
+            full aşağı yapmak gerekiyordu */
+            top: 85px;
+            /* aşağıdan yukarıya animasyon için */
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .mega-box .content {
+            background: #242526;
+            padding: 25px 20px;
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: 10px 10px;
+        }
+
+        .mega-box .content header {
+            /* mega-box içindeki başlıklar için */
+            font-size: 18px;
+            color: #f2f2f2;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: solid red 2px;
+        }
+        .mega-box li a
+        {
+            color: #f2f2f2;
+            display: block;
+        }
+        #s1 {
+            width: 70%;
+        }
+
+        .nav-links li {
+            list-style: none;
+        }
+        .nav_ic img {
+            width: 200px;
+            margin-left: 100px;
+        }
+        /* ----------- main kısmı ----------------- */
+        div.main {
+            margin: 20px;
+            /* bunu öylesine ekledim başlangıç olarak */
+            margin-top: 70px !important;
+            /* bu olmazsa en üstteki ifadeler navbar altında kalıyor */
+            /* yani sart gibi bir şey en azından bu kısım */
+            min-height: 500px; 
+            /* bu footer ın en altta kalması için */
+            
+        }
+        .box1{
+            color: aliceblue;
+            background-color: black;
+            width:700px;
+            height: 10px;
+            font-weight: 400;
+            font-style:normal;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 100px;
+            padding-bottom: 200px;
+            font-size:75px ;
+           margin-top: 100px;
+           border: 10px inset aliceblue;
+        }
+
+        .box2{
+          
+            background-color: black;
+            width: 400px;
+            height: 200px;;
+            padding-top: 5px;
+            color: aliceblue;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 50px;
+            padding-top: 50px;
+            margin-top: 100px;
+            border: 10px inset aliceblue;
+        }
+        /* --------- footer kısmı --------- */
+        div.footer {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            bottom: 0;
+            background-color: rgb(67, 67, 67);
+            display: block;
+
+        }
+
+        div.footer a {
+            display: block;
+            padding: 15px 15px;
+            font-weight: bold;
+
+        }
+        div.footer a:hover
+        {
+            background-color: #242526;
+            color: #dadada;
+            border-radius: 5px;
+        }
+        div.footer_alt {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            /* 3 tane footer_box un oranla yerleşmelerini sağlamak için */
+        }
+
+        div.footer_box {
+
+            text-align: center;
+            /* başlık ve yazılar ortalansın diye */
+        }
+
+        div.footer_box ul {
+            list-style-type: none;
+            /* listelerde olan . işaretini kaldırıyor */
+            padding: 0%;
+        }
+
+        div.footer_box h3 {
+            color: aliceblue;
+            text-decoration-line: underline;
+            text-decoration-color: red;
+            margin-bottom: 10px;
+
+            /* baştakı h3 lerin altlarında kırmızı bir çizgi oluşturuyor */
+        }
+
+        div.footer_box ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 5px;
+        }
+
+        div#footer_ek {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav_ic">
+            <div class="logo"><a href="./ana_sayfa.html"><img src="./görseller/logo/logo.png" alt="Sosyal Gelişim Kulübü"></a></div>
+            <ul class="nav-links">
+                <li><a href="./ana_sayfa.html">Ana Sayfa</a></li>
+                <li>
+                    <a href="#">Bölümler</a>
+                    <div class="mega-box">
+                        <div class="content">
+                            <div class="row">
+                                <header>Bölümlerimiz</header>
+                                <ul class="mega-link">
+                                    <li><a href="./toplum_hizmetleri.html">Toplum Hizmetleri</a></li>
+                                    <li><a href="./sosyal_inovasyon.html">Sosyal İnovasyon</a></li>
+                                    <li><a href="./dijital_iletişim_ve_medya.html">Dijital iletişim ve Media</a></li>
+                                    <li><a href="./öğrenme_felsefesi.html">Öğrenme felsefesi</a></li>
+                                    <li><a href="./hitabet.html">Hitabet ve Diksiyon</a></li>
+                                </ul>
+                            </div>
+                            <div class="row2">
+                                <header id="s1">Öneriler</header>
+                                <ul>
+                                    <li><a href="./kitap_önerileri.html">Kitap Önerileri</a></li>
+                                    <li><a href="./film_önerileri.html">Film ve Belgesel Önerileri</a></li>
+            
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="./hakkımızda.html">Hakkımızda</a></li>
+                <li><a href="./iletişim.html">iletişim</a></li>
+                <li><a href="./ulasim.html">ulaşım</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- --------- -->
+    <div class="main">
+        <div class="box1"> 
+            İLETİŞİM
+         </div>
+         
+            <div class="box2">
+                <i class="fa-brands fa-whatsapp"></i>
+                <i class="fa-solid fa-phone"></i>
+                <span >Telefon Numarası:0555 555 55 55-44 </span><br><br><br>
+                <i class="fa-brands fa-instagram"></i>
+                <span >instagram:@sosyaal_girisimcilik</span><br><br><br>
+                <i class="fa-solid fa-square-envelope"></i>
+                <span > E-mail Adresimiz:sosyalgirisimcilik@hotmail.com</span> 
+            </div>
+
+
+
+
+
+
+
+
+
+    </div>
+    <!-- --------------- footer kısmı   ---------- -->
+    <div class="footer">
+        <div class="footer_alt">
+            <div class="footer_box" id="footer_bölümler">
+                <h3>Kulübümüzün Bölümleri</h3>
+                <div>
+                    <ul>
+                        <li><a href="./toplum_hizmetleri.html">Toplum Hizmetleri</a></li>
+                        <li><a href="./sosyal_inovasyon.html">Sosyal İnovasyon</a></li>
+                        <li><a href="./dijital_iletişim_ve_medya.html">Dijital iletişim ve Media</a></li>
+                        <li><a href="./öğrenme_felsefesi.html">Öğrenme felsefesi</a></li>
+                        <li><a href="./hitabet.html">Hitabet ve Diksiyon</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer_box" id="footer_oneriler">
+                <h3>Öneriler</h3>
+                <div>
+                    <ul>
+                        <li><a href="./kitap_önerileri.html">Kitap Önerileri</a></li>
+                        <li><a href="./film_önerileri.html">Film ve Belgesel Önerileri</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="footer_box" id="footer_ek">
+                <div>
+                    <ul>
+                        <li><a href="./ana_sayfa.html">Ana Sayfa</a></li>
+                        <li><a href="./iletişim.html">İletişim</a></li>
+                        <li><a href="./ulasim.html">ulaşım</a></li>
+                        <li><a href="./hakkımızda.html">Hakkımızda</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

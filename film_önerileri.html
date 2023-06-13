@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Önerileri</title>
+    <link rel="icon" type="image/x-icon" href="./görseller/logo/logoico.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        nav {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            margin: 0;
+            background-color: rgb(255, 255, 255);
+            position: fixed;
+            top: 0;
+            /* bu üstte kalmasını sağlıyor */
+            width: 100%;
+            z-index: 999;
+            /* olası animasyonların barın üstüne çıkmasını engelliyor */
+        }
+
+        nav .nav_ic {
+            position: relative;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav_ic .nav-links {
+            display: inline-flex;
+            /* diğerleri de flex olduğu için flex yaptı galiba */
+        }
+
+        .nav-links li a {
+            color: #000000;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 15px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .nav-links li a:hover {
+            background: #3A3B3C;
+            color: #f2f2f2;
+        }
+
+        .nav-links li:hover .mega-box {
+            transition: all 0.3s ease;
+            top: 50px;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mega-box {
+            position: absolute;
+            left: 0;
+            /* positsion absolute dediğimiz için direkt bölümler kısmının altında kalıyordu normalde */
+            width: 70%;
+            /* genişliğini %70 ayarladık. */
+            padding: 35px 1% 1% 1%;
+            margin-top: 15px;
+            /* kenarlarda %1 lik yakınlığında da açık kalacak mega-box */
+            margin-right: 17%;
+            margin-left: 17%;
+            /* sağ ve solu ortalamak için ayarladık
+            padding kullanmama sebebim mega-box kapanması için
+            full aşağı yapmak gerekiyordu */
+            top: 85px;
+            /* aşağıdan yukarıya animasyon için */
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .mega-box .content {
+            background: #242526;
+            padding: 25px 20px;
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .mega-box .content header {
+            /* mega-box içindeki başlıklar için */
+            font-size: 18px;
+            color: #f2f2f2;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: solid red 2px;
+        }
+
+        .mega-box li a {
+            color: #f2f2f2;
+            display: block;
+        }
+
+        #s1 {
+            width: 70%;
+        }
+
+        .nav-links li {
+            list-style: none;
+        }
+
+        .nav_ic img {
+            width: 200px;
+            margin-left: 100px;
+        }
+
+        /* ----------- main kısmı ----------------- */
+        .main {
+            margin: 20px;
+            /* bunu öylesine ekledim başlangıç olarak */
+            margin-top: 90px !important;
+            /* bu olmazsa en üstteki ifadeler navbar altında kalıyor */
+            /* yani sart gibi bir şey en azından bu kısım */
+            min-height: 500px;
+            /* bu footer ın en altta kalması için */
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        h1 {
+            font-size: 60px;
+            color: cornflowerblue;
+            text-align: center;
+            margin-top: 80px;
+
+        }
+
+        .filmgörseldivi {
+
+            width: 800px;
+            height: 400px;
+            border: 1px solid black;
+            margin-left: 70px;
+            margin-right: 70px;
+            overflow: scroll;
+        }
+
+
+        .film-container {
+            display: flex;
+        }
+
+
+
+
+
+        /* --------- footer kısmı --------- */
+        div.footer {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            bottom: 0;
+            background-color: rgb(67, 67, 67);
+            display: block;
+
+        }
+
+        div.footer a {
+            display: block;
+            padding: 15px 15px;
+            font-weight: bold;
+
+        }
+        div.footer a:hover
+        {
+            background-color: #242526;
+            color: #dadada;
+            border-radius: 5px;
+        }
+        div.footer_alt {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            /* 3 tane footer_box un oranla yerleşmelerini sağlamak için */
+        }
+
+        div.footer_box {
+
+            text-align: center;
+            /* başlık ve yazılar ortalansın diye */
+        }
+
+        div.footer_box ul {
+            list-style-type: none;
+            /* listelerde olan . işaretini kaldırıyor */
+            padding: 0%;
+        }
+
+        div.footer_box h3 {
+            color: aliceblue;
+            text-decoration-line: underline;
+            text-decoration-color: red;
+            margin-bottom: 10px;
+            /* baştakı h3 lerin altlarında kırmızı bir çizgi oluşturuyor */
+        }
+
+        div.footer_box ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 5px;
+        }
+
+        div#footer_ek {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav_ic">
+            <div class="logo"><a href="./ana_sayfa.html"><img src="./görseller/logo/logo.png"
+                        alt="Sosyal Gelişim Kulübü"></a></div>
+            <ul class="nav-links">
+                <li><a href="./ana_sayfa.html">Ana Sayfa</a></li>
+                <li>
+                    <a href="#">Bölümler</a>
+                    <div class="mega-box">
+                        <div class="content">
+                            <div class="row">
+                                <header>Bölümlerimiz</header>
+                                <ul class="mega-link">
+                                    <li><a href="./toplum_hizmetleri.html">Toplum Hizmetleri</a></li>
+                                    <li><a href="./sosyal_inovasyon.html">Sosyal İnovasyon</a></li>
+                                    <li><a href="./dijital_iletişim_ve_medya.html">Dijital iletişim ve Media</a></li>
+                                    <li><a href="./öğrenme_felsefesi.html">Öğrenme felsefesi</a></li>
+                                    <li><a href="./hitabet.html">Hitabet ve Diksiyon</a></li>
+                                </ul>
+                            </div>
+                            <div class="row2">
+                                <header id="s1">Öneriler</header>
+                                <ul>
+                                    <li><a href="./kitap_önerileri.html">Kitap Önerileri</a></li>
+                                    <li><a href="./film_önerileri.html">Film ve Belgesel Önerileri</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="./hakkımızda.html">Hakkımızda</a></li>
+                <li><a href="./iletişim.html">iletişim</a></li>
+                <li><a href="./ulasim.html">ulaşım</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- --------- -->
+    <div class="main">
+        <h1 class="h1">BU HAFTAKİ FİLM ÖNERİLERİMİZ</h1><br><br><br>
+        <div class="film-container">
+
+            <div class="filmgörseldivi">
+                <div>
+                    <img width="335px" height="400px" src="./görseller/filmler/film1.jpg" alt=".">
+
+
+                    "Sosyal Ağ" filmi, 2010 yılında David Fincher tarafından yönetilen ve Facebook'un kuruluş hikayesini
+                    anlatan bir drama filmidir. Film, Mark Zuckerberg'in Harvard Üniversitesi'ndeki öğrencilik
+                    yıllarında Facebook'u nasıl kurduğunu ve bu sosyal medya platformunun nasıl dünya çapında bir
+                    fenomen haline geldiğini anlatır.
+                    "Sosyal Ağ", Mark Zuckerberg'in zeki ve yenilikçi bir öğrenci olarak başladığı hikayesine odaklanır.
+                    Bir gece, birkaç arkadaşıyla birlikte içerikleri değerlendirmek ve karşılaştırmak amacıyla
+                    "Facemash" adlı bir web sitesi oluşturur. Bu site, üniversite öğrencilerini karşılaştırmak ve
+                    derecelendirmek için fotoğraflarını kullanır. Facemash'ın popülerliği, Harvard'un internet
+                    altyapısını çökertir ve Mark, üniversitenin dikkatini çeker.
+                    Bu olay Mark'ı bir fikir üzerinde düşünmeye iter ve ardından "Thefacebook" adını verdiği sosyal ağ
+                    platformunu kurar. Bu platform, öğrencilere kendi profillerini oluşturma, arkadaş edinme ve paylaşım
+                    yapma imkanı sunar. Thefacebook hızla Harvard'da popüler hale gelir ve diğer üniversitelere
+                    genişler. Ancak, başarısı ve yükselişiyle birlikte, Mark'in ilişkileri, hukuki zorlukları ve kişisel
+                    entrikaları da ortaya çıkar.
+                    Film, Zuckerberg'in Facebook'u büyütme sürecinde karşılaştığı davalara ve arkadaşlarıyla olan
+                    ilişkilerine de odaklanır. İş ortağı Eduardo Saverin, işbirliği anlaşmazlıkları nedeniyle Mark ile
+                    anlaşmazlık yaşar ve Sean Parker adlı bir girişimci, Facebook'a yatırım yaparak şirketin daha da
+                    büyümesine yardımcı olur. Ancak bu büyüme ve başarı, Mark'ın kişisel hayatını da etkiler ve yakın
+                    ilişkilerini zorlar.
+                    "Sosyal Ağ", modern sosyal medyanın yükselişine ve insan ilişkileri üzerindeki etkisine odaklanan
+                    bir hikaye anlatır. Film, teknolojinin gücünü ve sosyal ağların toplumu nasıl etkileyebileceğini
+                    tartışırken, bireysel başarı, sadakat, ihanet ve kimlik arayışı gibi temaları da ele alır. David
+                    Fincher'ın yönetmenliği, Aaron Sorkin'in senaryosu ve Jesse Eisenberg'in Mark Zuckerberg'i
+                    canlandırdığı etkileyici performansıyla "Sosyal Ağ", eleştirmenlerden övgü toplamış ve birçok ödül
+                    kazanmış bir filmdir.
+
+                </div>
+            </div>
+
+            <div class="filmgörseldivi">
+                <div>
+                    <img width="330px" height="400px" src="./görseller/filmler/film2.jpg" alt=".">
+                    <p>"Interstellar", 2014 yapımı bir bilim kurgu ve macera filmidir. Yönetmenliğini Christopher Nolan
+                        üstlenmiştir. Film, insanlığın Dünya üzerinde yaşanmaz hale geldiği bir gelecekte geçmektedir.
+                        Tarlaların kuruduğu, gıda kaynaklarının tükenmeye başladığı bir dönemde, astronot ve eski bir
+                        pilottan oluşan bir grup keşifçi, insanlığın hayatta kalabileceği yeni bir gezegen arayışına
+                        çıkar.
+                        Film, bilimsel unsurlarla karmaşık bir hikayeyi birleştirir. Ana karakter Cooper, (Matthew
+                        McConaughey) Dünya'yı terk ederek, bilinmeyen uzayda yer alan solucan deliğini kullanarak farklı
+                        bir galaksiye seyahat eder. Burada, bilinmeyen bir uzay-zaman boyutunda yolculuk yaparak, yeni
+                        gezegenler araştırırlar.
+                        "Interstellar", çarpıcı görsel efektleri, etkileyici müzikleri ve derin düşünce
+                        provokasyonlarıyla tanınır. Film, insanlığın doğası, aşk, aile bağları, zamanın algısı ve
+                        evrenin sınırları gibi temaları ele alır. Christopher Nolan'ın yönetmenlik becerisiyle birleşen
+                        oyunculuk performanslarıyla da dikkat çeker.
+                        "Interstellar", sürükleyici bir hikaye anlatımıyla, izleyicileri düşündürmeyi ve duygusal bir
+                        yolculuğa çıkarmayı hedefler. Bilim kurgu severler için unutulmaz bir deneyim sunan bu film,
+                        evrenin gizemlerini keşfetmeye ve insanlığın sınırlarını zorlamaya davet eder. </p>
+                </div>
+            </div>
+
+
+            <div class="filmgörseldivi">
+                <div>
+                    <img width="330px" height="400px" src="./görseller/filmler/film3.jpg" alt=".">
+                    <p> "Inception", 2010 yapımı bir bilim kurgu ve aksiyon filmidir. Yönetmenliğini Christopher Nolan
+                        üstlenmiştir. Film, insanların bilinçaltına girerek zihinsel manipülasyon yapabilen bir
+                        hırsızlık ekibinin hikayesini anlatır.
+                        Ana karakter Dom Cobb (Leonardo DiCaprio), suçlulukla dolu bir geçmişe sahip bir hırsızdır. Cobb
+                        ve ekibi, müşterilerinin zihinlerine gizli bilgilere erişmek için rüya dünyalarında soygunlar
+                        gerçekleştirir. Ancak, Cobb'a son bir görev teklif edilir: İnception. Bu görevde, bilinçaltına
+                        bir fikir eklemek ve bir kişinin kendi iradesiymiş gibi onu kabul etmesini sağlamak amaçlanır.
+                        Film, karmaşık ve katmanlı bir hikaye yapısına sahiptir. Rüya dünyalarında geçen aksiyon dolu
+                        sahnelerle birlikte gerilim ve gizem unsurlarını başarıyla bir araya getirir. Film, gerçeklik
+                        ile rüya dünyası arasındaki sınırları bulanıklaştırırken, karakterlerin kendi iç dünyalarıyla da
+                        mücadele etmelerini anlatır.
+                        "Inception", görsel efektleri, yaratıcı sahneleri ve sürükleyici müziğiyle dikkat çeker. Aynı
+                        zamanda zaman ve gerçeklik kavramlarıyla oynayarak izleyicileri düşünmeye teşvik eder. Zekice
+                        kurgulanmış senaryosu ve oyunculuk performanslarıyla da övgü kazanan bu film, izleyicileri rüya
+                        dünyasına sürükleyen ve akıllarda iz bırakan bir deneyim sunar.</p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <!-- ---------------------------- -->
+    <div class="footer">
+        <div class="footer_alt">
+            <div class="footer_box" id="footer_bölümler">
+                <h3>Kulübümüzün Bölümleri</h3>
+                <div>
+                    <ul>
+                        <li><a href="./toplum_hizmetleri.html">Toplum Hizmetleri</a></li>
+                        <li><a href="./sosyal_inovasyon.html">Sosyal İnovasyon</a></li>
+                        <li><a href="./dijital_iletişim_ve_medya.html">Dijital iletişim ve Media</a></li>
+                        <li><a href="./öğrenme_felsefesi.html">Öğrenme felsefesi</a></li>
+                        <li><a href="./hitabet.html">Hitabet ve Diksiyon</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer_box" id="footer_oneriler">
+                <h3>Öneriler</h3>
+                <div>
+                    <ul>
+                        <li><a href="./kitap_önerileri.html">Kitap Önerileri</a></li>
+                        <li><a href="./film_önerileri.html">Film ve Belgesel Önerileri</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="footer_box" id="footer_ek">
+                <div>
+                    <ul>
+                        <li><a href="./ana_sayfa.html">Ana Sayfa</a></li>
+                        <li><a href="./iletişim.html">İletişim</a></li>
+                        <li><a href="./ulasim.html">ulaşım</a></li>
+                        <li><a href="./hakkımızda.html">Hakkımızda</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
